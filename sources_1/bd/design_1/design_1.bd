@@ -1,0 +1,374 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xC479444A924EC7E8",
+      "device": "xc7z020clg400-1",
+      "gen_directory": "../../../../MIPS_Core.gen/sources_1/bd/design_1",
+      "name": "design_1",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2021.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "SPI_Controller_0": "",
+      "Clock_Divide_0": "",
+      "clk_wiz_0": "",
+      "MIPS_CPU_0": ""
+    },
+    "ports": {
+      "clk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "design_1_clk",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "125000000"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0"
+          }
+        }
+      },
+      "ck_miso": {
+        "direction": "I"
+      },
+      "ck_sck": {
+        "direction": "O"
+      },
+      "ck_ss": {
+        "direction": "O"
+      },
+      "ck_mosi": {
+        "direction": "O"
+      }
+    },
+    "components": {
+      "SPI_Controller_0": {
+        "vlnv": "xilinx.com:module_ref:SPI_Controller:1.0",
+        "xci_name": "design_1_SPI_Controller_0_0",
+        "xci_path": "ip/design_1_SPI_Controller_0_0/design_1_SPI_Controller_0_0.xci",
+        "inst_hier_path": "SPI_Controller_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "SPI_Controller",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "interrupt": {
+            "type": "intr",
+            "direction": "I",
+            "parameters": {
+              "SENSITIVITY": {
+                "value": "LEVEL_HIGH",
+                "value_src": "constant"
+              }
+            }
+          },
+          "value": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "60000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "spi_clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "spi_clk_o": {
+            "direction": "O"
+          },
+          "ss": {
+            "direction": "O"
+          },
+          "mosi": {
+            "direction": "O"
+          },
+          "miso": {
+            "direction": "I"
+          }
+        }
+      },
+      "Clock_Divide_0": {
+        "vlnv": "xilinx.com:module_ref:Clock_Divide:1.0",
+        "xci_name": "design_1_Clock_Divide_0_0",
+        "xci_path": "ip/design_1_Clock_Divide_0_0/design_1_Clock_Divide_0_0.xci",
+        "inst_hier_path": "Clock_Divide_0",
+        "parameters": {
+          "DIVIDE": {
+            "value": "10"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Clock_Divide",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "5000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "clk_o": {
+            "direction": "O"
+          }
+        }
+      },
+      "clk_wiz_0": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "xci_name": "design_1_clk_wiz_0_0",
+        "xci_path": "ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0.xci",
+        "inst_hier_path": "clk_wiz_0",
+        "parameters": {
+          "CLKIN1_JITTER_PS": {
+            "value": "80.0"
+          },
+          "CLKOUT1_DRIVES": {
+            "value": "BUFG"
+          },
+          "CLKOUT1_JITTER": {
+            "value": "348.653"
+          },
+          "CLKOUT1_PHASE_ERROR": {
+            "value": "335.459"
+          },
+          "CLKOUT1_REQUESTED_OUT_FREQ": {
+            "value": "60"
+          },
+          "CLKOUT2_DRIVES": {
+            "value": "BUFG"
+          },
+          "CLKOUT2_JITTER": {
+            "value": "551.176"
+          },
+          "CLKOUT2_PHASE_ERROR": {
+            "value": "335.459"
+          },
+          "CLKOUT2_REQUESTED_OUT_FREQ": {
+            "value": "5"
+          },
+          "CLKOUT2_USED": {
+            "value": "true"
+          },
+          "CLKOUT3_DRIVES": {
+            "value": "BUFG"
+          },
+          "CLKOUT4_DRIVES": {
+            "value": "BUFG"
+          },
+          "CLKOUT5_DRIVES": {
+            "value": "BUFG"
+          },
+          "CLKOUT6_DRIVES": {
+            "value": "BUFG"
+          },
+          "CLKOUT7_DRIVES": {
+            "value": "BUFG"
+          },
+          "CLK_IN1_BOARD_INTERFACE": {
+            "value": "sys_clock"
+          },
+          "CLK_IN2_BOARD_INTERFACE": {
+            "value": "Custom"
+          },
+          "FEEDBACK_SOURCE": {
+            "value": "FDBK_AUTO"
+          },
+          "MMCM_BANDWIDTH": {
+            "value": "OPTIMIZED"
+          },
+          "MMCM_CLKFBOUT_MULT_F": {
+            "value": "24.000"
+          },
+          "MMCM_CLKIN1_PERIOD": {
+            "value": "8.0"
+          },
+          "MMCM_CLKIN2_PERIOD": {
+            "value": "10.0"
+          },
+          "MMCM_CLKOUT0_DIVIDE_F": {
+            "value": "10.000"
+          },
+          "MMCM_CLKOUT1_DIVIDE": {
+            "value": "120"
+          },
+          "MMCM_COMPENSATION": {
+            "value": "ZHOLD"
+          },
+          "MMCM_DIVCLK_DIVIDE": {
+            "value": "5"
+          },
+          "NUM_OUT_CLKS": {
+            "value": "2"
+          },
+          "PRIMITIVE": {
+            "value": "MMCM"
+          },
+          "RESET_BOARD_INTERFACE": {
+            "value": "Custom"
+          },
+          "USE_BOARD_FLOW": {
+            "value": "true"
+          },
+          "USE_LOCKED": {
+            "value": "false"
+          },
+          "USE_RESET": {
+            "value": "false"
+          }
+        }
+      },
+      "MIPS_CPU_0": {
+        "vlnv": "xilinx.com:module_ref:MIPS_CPU:1.0",
+        "xci_name": "design_1_MIPS_CPU_0_0",
+        "xci_path": "ip/design_1_MIPS_CPU_0_0/design_1_MIPS_CPU_0_0.xci",
+        "inst_hier_path": "MIPS_CPU_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "MIPS_CPU",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "60000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "value": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "interrupt": {
+            "type": "intr",
+            "direction": "O",
+            "parameters": {
+              "SENSITIVITY": {
+                "value": "LEVEL_HIGH",
+                "value_src": "constant"
+              }
+            }
+          }
+        }
+      }
+    },
+    "nets": {
+      "Clock_Divide_0_clk_o": {
+        "ports": [
+          "Clock_Divide_0/clk_o",
+          "SPI_Controller_0/spi_clk"
+        ]
+      },
+      "MIPS_CPU_0_interrupt": {
+        "ports": [
+          "MIPS_CPU_0/interrupt",
+          "SPI_Controller_0/interrupt"
+        ]
+      },
+      "MIPS_CPU_0_value": {
+        "ports": [
+          "MIPS_CPU_0/value",
+          "SPI_Controller_0/value"
+        ]
+      },
+      "SPI_Controller_0_mosi": {
+        "ports": [
+          "SPI_Controller_0/mosi",
+          "ck_mosi"
+        ]
+      },
+      "SPI_Controller_0_spi_clk_o": {
+        "ports": [
+          "SPI_Controller_0/spi_clk_o",
+          "ck_sck"
+        ]
+      },
+      "SPI_Controller_0_ss": {
+        "ports": [
+          "SPI_Controller_0/ss",
+          "ck_ss"
+        ]
+      },
+      "clk_wiz_0_clk_out1": {
+        "ports": [
+          "clk_wiz_0/clk_out1",
+          "SPI_Controller_0/clk",
+          "MIPS_CPU_0/clk"
+        ]
+      },
+      "clk_wiz_0_clk_out2": {
+        "ports": [
+          "clk_wiz_0/clk_out2",
+          "Clock_Divide_0/clk"
+        ]
+      },
+      "miso_0_1": {
+        "ports": [
+          "ck_miso",
+          "SPI_Controller_0/miso"
+        ]
+      },
+      "sys_clock_1": {
+        "ports": [
+          "clk",
+          "clk_wiz_0/clk_in1"
+        ]
+      }
+    }
+  }
+}
