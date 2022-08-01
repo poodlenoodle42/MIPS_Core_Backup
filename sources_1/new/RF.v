@@ -29,8 +29,6 @@ assign rt_locked = rt == 0 ? 0 : (register_locks[rt] > 0);
 wire stall_w;
 assign stall_w = (rt_locked == 1 && forwarding_rt == 0) || (rs_locked == 1 && forwarding_rs == 0);
 
-
-
 integer i;
 initial begin
     stall_rs = 0;

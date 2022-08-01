@@ -24,17 +24,18 @@ module Core_tb();
 
 wire [31:0] instruction_address;
 wire [31:0] instruction_bus;
-wire [31:0] data_address;
+wire [29:0] data_address;
 wire [31:0] data_bus;
 wire data_cs;
 wire data_rw;
-wire [1:0] data_mode;
 reg clk;
 
 initial begin
     //$readmemh("prims.elf.mem",instruction_memory.memory);
-    clk = 0;
-    #10000000 $finish;
+    $readmemh("presentation_multiply.elf.mem", image.memory);
+    clk = 1;
+    //#100000000 $finish;
+    
 end
 
 always #1 clk = !clk;
@@ -46,10 +47,71 @@ Core mips_core (
     .data_bus (data_bus),
     .data_cs (data_cs),
     .data_rw (data_rw),
+    .clk (clk)
+);
+
+
+
+
+
+/*
+wire [31:0] data_bus_o;
+wire [29:0] data_address_o;
+wire data_cs_o;
+wire data_rw_o;
+
+Data_Write_Sync sync (
+    .clk (clk),
+    .data_bus_i (data_bus),
+    .data_address_i (data_address),
+    .data_cs_i (data_cs),
+    .data_rw_i (data_rw),
+    .data_mode (data_mode),
+    .data_bus_o (data_bus_o),
+    .data_address_o (data_address_o),
+    .data_cs_o (data_cs_o),
+    .data_rw_o (data_rw_o)
+);
+*/
+
+Internal_Memory #(.SIZE(6000), .ADDRESS('hfffffff0 - (6000 * 4))) stack (
+    .clk (clk),
+    .data_address (data_address),
+    .data_bus (data_bus),
+    .data_rw (data_rw),
+    .data_cs (data_cs),
+    
+    .instruction_address (instruction_address[31:2]),
+    .instruction_bus (instruction_bus)
+);
+
+Internal_Memory #(.SIZE(40000), .ADDRESS('h80000000)) image (
+    .clk (clk),
+    .data_address (data_address),
+    .data_bus (data_bus),
+    .data_rw (data_rw),
+    .data_cs (data_cs),
+    
+    .instruction_address (instruction_address[31:2]),
+    .instruction_bus (instruction_bus)
+);
+
+
+
+
+
+
+Print_Stop p_s (
+    .data_address (data_address),
+    .data_bus (data_bus),
+    .data_cs (data_cs),
+    .data_rw (data_rw),
     .data_mode (data_mode),
     .clk (clk)
 );
 
+endmodule
+/*
 Image_Memory  #(.SIZE(4096), .ADDRESS('h80000000)) instruction_memory (
     .instruction_address (instruction_address),
     .instruction_bus (instruction_bus),
@@ -69,14 +131,4 @@ Internal_Memory #(.SIZE(4096), .ADDRESS('hfffffff0 - (4096 * 4))) stack (
     .data_mode (data_mode),
     .clk (clk)
 );  
-
-Print_Stop p_s (
-    .data_address (data_address),
-    .data_bus (data_bus),
-    .data_cs (data_cs),
-    .data_rw (data_rw),
-    .data_mode (data_mode),
-    .clk (clk)
-);
-
-endmodule
+*/

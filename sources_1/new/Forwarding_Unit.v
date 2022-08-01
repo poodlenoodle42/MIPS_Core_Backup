@@ -45,10 +45,6 @@ reg register_write_rd;
 
 
 initial begin
-    //forwarding_rs = 0;
-    //forwarding_rt = 0;
-    //value_rs = 0;
-    //value_rt = 0;
     rd_rd = 0;
     register_write_rd = 0;
 end

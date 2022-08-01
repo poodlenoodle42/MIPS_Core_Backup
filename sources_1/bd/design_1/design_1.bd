@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xC479444A924EC7E8",
+      "boundary_crc": "0x21941458C061328",
       "device": "xc7z020clg400-1",
       "gen_directory": "../../../../MIPS_Core.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -11,10 +11,10 @@
       "validated": "true"
     },
     "design_tree": {
-      "SPI_Controller_0": "",
-      "Clock_Divide_0": "",
       "clk_wiz_0": "",
-      "MIPS_CPU_0": ""
+      "rgb2dvi_0": "",
+      "xlconstant_0": "",
+      "SOC_0": ""
     },
     "ports": {
       "clk": {
@@ -41,8 +41,59 @@
           }
         }
       },
-      "ck_miso": {
-        "direction": "I"
+      "hdmi_tx_clk_p": {
+        "type": "clk",
+        "direction": "O",
+        "parameters": {
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      },
+      "hdmi_tx_clk_n": {
+        "type": "clk",
+        "direction": "O",
+        "parameters": {
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      },
+      "hdmi_tx_d_p": {
+        "direction": "O",
+        "left": "2",
+        "right": "0"
+      },
+      "hdmi_tx_d_n": {
+        "direction": "O",
+        "left": "2",
+        "right": "0"
       },
       "ck_sck": {
         "direction": "O"
@@ -52,110 +103,17 @@
       },
       "ck_mosi": {
         "direction": "O"
+      },
+      "ck_miso": {
+        "direction": "I"
+      },
+      "gpio": {
+        "direction": "I",
+        "left": "19",
+        "right": "0"
       }
     },
     "components": {
-      "SPI_Controller_0": {
-        "vlnv": "xilinx.com:module_ref:SPI_Controller:1.0",
-        "xci_name": "design_1_SPI_Controller_0_0",
-        "xci_path": "ip/design_1_SPI_Controller_0_0/design_1_SPI_Controller_0_0.xci",
-        "inst_hier_path": "SPI_Controller_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "SPI_Controller",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "interrupt": {
-            "type": "intr",
-            "direction": "I",
-            "parameters": {
-              "SENSITIVITY": {
-                "value": "LEVEL_HIGH",
-                "value_src": "constant"
-              }
-            }
-          },
-          "value": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "FREQ_HZ": {
-                "value": "60000000",
-                "value_src": "ip_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "ip_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "/clk_wiz_0_clk_out1",
-                "value_src": "ip_prop"
-              }
-            }
-          },
-          "spi_clk": {
-            "type": "clk",
-            "direction": "I"
-          },
-          "spi_clk_o": {
-            "direction": "O"
-          },
-          "ss": {
-            "direction": "O"
-          },
-          "mosi": {
-            "direction": "O"
-          },
-          "miso": {
-            "direction": "I"
-          }
-        }
-      },
-      "Clock_Divide_0": {
-        "vlnv": "xilinx.com:module_ref:Clock_Divide:1.0",
-        "xci_name": "design_1_Clock_Divide_0_0",
-        "xci_path": "ip/design_1_Clock_Divide_0_0/design_1_Clock_Divide_0_0.xci",
-        "inst_hier_path": "Clock_Divide_0",
-        "parameters": {
-          "DIVIDE": {
-            "value": "10"
-          }
-        },
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "Clock_Divide",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "FREQ_HZ": {
-                "value": "5000000",
-                "value_src": "ip_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "ip_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "/clk_wiz_0_clk_out1",
-                "value_src": "ip_prop"
-              }
-            }
-          },
-          "clk_o": {
-            "direction": "O"
-          }
-        }
-      },
       "clk_wiz_0": {
         "vlnv": "xilinx.com:ip:clk_wiz:6.0",
         "xci_name": "design_1_clk_wiz_0_0",
@@ -169,31 +127,43 @@
             "value": "BUFG"
           },
           "CLKOUT1_JITTER": {
-            "value": "348.653"
+            "value": "305.740"
           },
           "CLKOUT1_PHASE_ERROR": {
-            "value": "335.459"
+            "value": "265.359"
           },
           "CLKOUT1_REQUESTED_OUT_FREQ": {
-            "value": "60"
+            "value": "50"
           },
           "CLKOUT2_DRIVES": {
             "value": "BUFG"
           },
           "CLKOUT2_JITTER": {
-            "value": "551.176"
+            "value": "321.613"
           },
           "CLKOUT2_PHASE_ERROR": {
-            "value": "335.459"
+            "value": "265.359"
           },
           "CLKOUT2_REQUESTED_OUT_FREQ": {
-            "value": "5"
+            "value": "40"
           },
           "CLKOUT2_USED": {
             "value": "true"
           },
           "CLKOUT3_DRIVES": {
             "value": "BUFG"
+          },
+          "CLKOUT3_JITTER": {
+            "value": "454.193"
+          },
+          "CLKOUT3_PHASE_ERROR": {
+            "value": "265.359"
+          },
+          "CLKOUT3_REQUESTED_OUT_FREQ": {
+            "value": "5"
+          },
+          "CLKOUT3_USED": {
+            "value": "true"
           },
           "CLKOUT4_DRIVES": {
             "value": "BUFG"
@@ -220,19 +190,22 @@
             "value": "OPTIMIZED"
           },
           "MMCM_CLKFBOUT_MULT_F": {
-            "value": "24.000"
+            "value": "32.000"
           },
           "MMCM_CLKIN1_PERIOD": {
-            "value": "8.0"
+            "value": "8.000"
           },
           "MMCM_CLKIN2_PERIOD": {
-            "value": "10.0"
-          },
-          "MMCM_CLKOUT0_DIVIDE_F": {
             "value": "10.000"
           },
+          "MMCM_CLKOUT0_DIVIDE_F": {
+            "value": "16.000"
+          },
           "MMCM_CLKOUT1_DIVIDE": {
-            "value": "120"
+            "value": "20"
+          },
+          "MMCM_CLKOUT2_DIVIDE": {
+            "value": "128"
           },
           "MMCM_COMPENSATION": {
             "value": "ZHOLD"
@@ -241,7 +214,7 @@
             "value": "5"
           },
           "NUM_OUT_CLKS": {
-            "value": "2"
+            "value": "3"
           },
           "PRIMITIVE": {
             "value": "MMCM"
@@ -260,23 +233,56 @@
           }
         }
       },
-      "MIPS_CPU_0": {
-        "vlnv": "xilinx.com:module_ref:MIPS_CPU:1.0",
-        "xci_name": "design_1_MIPS_CPU_0_0",
-        "xci_path": "ip/design_1_MIPS_CPU_0_0/design_1_MIPS_CPU_0_0.xci",
-        "inst_hier_path": "MIPS_CPU_0",
+      "rgb2dvi_0": {
+        "vlnv": "digilentinc.com:ip:rgb2dvi:1.4",
+        "xci_name": "design_1_rgb2dvi_0_0",
+        "xci_path": "ip/design_1_rgb2dvi_0_0/design_1_rgb2dvi_0_0.xci",
+        "inst_hier_path": "rgb2dvi_0",
+        "parameters": {
+          "kClkRange": {
+            "value": "3"
+          },
+          "kRstActiveHigh": {
+            "value": "true"
+          }
+        }
+      },
+      "xlconstant_0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "design_1_xlconstant_0_0",
+        "xci_path": "ip/design_1_xlconstant_0_0/design_1_xlconstant_0_0.xci",
+        "inst_hier_path": "xlconstant_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          }
+        }
+      },
+      "SOC_0": {
+        "vlnv": "xilinx.com:module_ref:SOC:1.0",
+        "xci_name": "design_1_SOC_0_0",
+        "xci_path": "ip/design_1_SOC_0_0/design_1_SOC_0_0.xci",
+        "inst_hier_path": "SOC_0",
+        "parameters": {
+          "GPIO_PINS": {
+            "value": "20"
+          }
+        },
         "reference_info": {
           "ref_type": "hdl",
-          "ref_name": "MIPS_CPU",
+          "ref_name": "SOC",
           "boundary_crc": "0x0"
         },
         "ports": {
-          "clk": {
+          "spi_miso": {
+            "direction": "I"
+          },
+          "spi_clk": {
             "type": "clk",
             "direction": "I",
             "parameters": {
               "FREQ_HZ": {
-                "value": "60000000",
+                "value": "6250000",
                 "value_src": "ip_prop"
               },
               "PHASE": {
@@ -289,84 +295,181 @@
               }
             }
           },
-          "value": {
-            "direction": "O",
-            "left": "7",
-            "right": "0"
-          },
-          "interrupt": {
-            "type": "intr",
-            "direction": "O",
+          "cpu_clk": {
+            "type": "clk",
+            "direction": "I",
             "parameters": {
-              "SENSITIVITY": {
-                "value": "LEVEL_HIGH",
-                "value_src": "constant"
+              "FREQ_HZ": {
+                "value": "50000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
               }
             }
+          },
+          "gpu_clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "40000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "gpio": {
+            "direction": "I",
+            "left": "19",
+            "right": "0"
+          },
+          "gpu_pixel_data": {
+            "direction": "O",
+            "left": "23",
+            "right": "0"
+          },
+          "gpu_hsync": {
+            "direction": "O"
+          },
+          "gpu_vsync": {
+            "direction": "O"
+          },
+          "gpu_vde": {
+            "direction": "O"
+          },
+          "spi_clk_o": {
+            "direction": "O"
+          },
+          "spi_ss": {
+            "direction": "O"
+          },
+          "spi_mosi": {
+            "direction": "O"
           }
         }
       }
     },
     "nets": {
-      "Clock_Divide_0_clk_o": {
+      "SOC_0_gpu_hsync": {
         "ports": [
-          "Clock_Divide_0/clk_o",
-          "SPI_Controller_0/spi_clk"
+          "SOC_0/gpu_hsync",
+          "rgb2dvi_0/vid_pHSync"
         ]
       },
-      "MIPS_CPU_0_interrupt": {
+      "SOC_0_gpu_pixel_data": {
         "ports": [
-          "MIPS_CPU_0/interrupt",
-          "SPI_Controller_0/interrupt"
+          "SOC_0/gpu_pixel_data",
+          "rgb2dvi_0/vid_pData"
         ]
       },
-      "MIPS_CPU_0_value": {
+      "SOC_0_gpu_vde": {
         "ports": [
-          "MIPS_CPU_0/value",
-          "SPI_Controller_0/value"
+          "SOC_0/gpu_vde",
+          "rgb2dvi_0/vid_pVDE"
         ]
       },
-      "SPI_Controller_0_mosi": {
+      "SOC_0_gpu_vsync": {
         "ports": [
-          "SPI_Controller_0/mosi",
-          "ck_mosi"
+          "SOC_0/gpu_vsync",
+          "rgb2dvi_0/vid_pVSync"
         ]
       },
-      "SPI_Controller_0_spi_clk_o": {
+      "SOC_0_spi_clk_o": {
         "ports": [
-          "SPI_Controller_0/spi_clk_o",
+          "SOC_0/spi_clk_o",
           "ck_sck"
         ]
       },
-      "SPI_Controller_0_ss": {
+      "SOC_0_spi_mosi": {
         "ports": [
-          "SPI_Controller_0/ss",
+          "SOC_0/spi_mosi",
+          "ck_mosi"
+        ]
+      },
+      "SOC_0_spi_ss": {
+        "ports": [
+          "SOC_0/spi_ss",
           "ck_ss"
+        ]
+      },
+      "ck_miso_1": {
+        "ports": [
+          "ck_miso",
+          "SOC_0/spi_miso"
+        ]
+      },
+      "clk_1": {
+        "ports": [
+          "clk",
+          "clk_wiz_0/clk_in1"
         ]
       },
       "clk_wiz_0_clk_out1": {
         "ports": [
           "clk_wiz_0/clk_out1",
-          "SPI_Controller_0/clk",
-          "MIPS_CPU_0/clk"
+          "SOC_0/cpu_clk"
         ]
       },
       "clk_wiz_0_clk_out2": {
         "ports": [
           "clk_wiz_0/clk_out2",
-          "Clock_Divide_0/clk"
+          "rgb2dvi_0/PixelClk",
+          "SOC_0/gpu_clk"
         ]
       },
-      "miso_0_1": {
+      "clk_wiz_0_clk_out3": {
         "ports": [
-          "ck_miso",
-          "SPI_Controller_0/miso"
+          "clk_wiz_0/clk_out3",
+          "SOC_0/spi_clk"
         ]
       },
-      "sys_clock_1": {
+      "gpio_0_1": {
         "ports": [
-          "clk",
-          "clk_wiz_0/clk_in1"
+          "gpio",
+          "SOC_0/gpio"
+        ]
+      },
+      "rgb2dvi_0_TMDS_Clk_n": {
+        "ports": [
+          "rgb2dvi_0/TMDS_Clk_n",
+          "hdmi_tx_clk_n"
+        ]
+      },
+      "rgb2dvi_0_TMDS_Clk_p": {
+        "ports": [
+          "rgb2dvi_0/TMDS_Clk_p",
+          "hdmi_tx_clk_p"
+        ]
+      },
+      "rgb2dvi_0_TMDS_Data_n": {
+        "ports": [
+          "rgb2dvi_0/TMDS_Data_n",
+          "hdmi_tx_d_n"
+        ]
+      },
+      "rgb2dvi_0_TMDS_Data_p": {
+        "ports": [
+          "rgb2dvi_0/TMDS_Data_p",
+          "hdmi_tx_d_p"
+        ]
+      },
+      "xlconstant_0_dout": {
+        "ports": [
+          "xlconstant_0/dout",
+          "rgb2dvi_0/aRst"
         ]
       }
     }

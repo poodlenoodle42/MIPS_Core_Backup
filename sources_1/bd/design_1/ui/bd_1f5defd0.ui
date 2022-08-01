@@ -1,34 +1,50 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"1.0",
-   "Default View_TopLeft":"-1001,-281",
+   "Default View_TopLeft":"-877,-214",
    "ExpandedHierarchyInLayout":"",
+   "PinnedBlocks":"",
+   "PinnedPorts":"",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
-preplace port port-id_clk -pg 1 -lvl 0 -x 0 -y 230 -defaultsOSRD
-preplace port port-id_ck_miso -pg 1 -lvl 0 -x 0 -y 160 -defaultsOSRD
-preplace port port-id_ck_sck -pg 1 -lvl 4 -x 710 -y 100 -defaultsOSRD
-preplace port port-id_ck_ss -pg 1 -lvl 4 -x 710 -y 120 -defaultsOSRD
-preplace port port-id_ck_mosi -pg 1 -lvl 4 -x 710 -y 140 -defaultsOSRD
-preplace inst SPI_Controller_0 -pg 1 -lvl 3 -x 570 -y 120 -defaultsOSRD
-preplace inst Clock_Divide_0 -pg 1 -lvl 2 -x 330 -y 240 -defaultsOSRD
-preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 120 -y 230 -defaultsOSRD
-preplace inst MIPS_CPU_0 -pg 1 -lvl 2 -x 330 -y 70 -defaultsOSRD
-preplace netloc Clock_Divide_0_clk_o 1 2 1 450 140n
-preplace netloc MIPS_CPU_0_interrupt 1 2 1 N 80
-preplace netloc MIPS_CPU_0_value 1 2 1 440 60n
-preplace netloc SPI_Controller_0_mosi 1 3 1 NJ 140
-preplace netloc SPI_Controller_0_spi_clk_o 1 3 1 NJ 100
-preplace netloc SPI_Controller_0_ss 1 3 1 NJ 120
-preplace netloc clk_wiz_0_clk_out1 1 1 2 220 140 440
-preplace netloc clk_wiz_0_clk_out2 1 1 1 NJ 240
-preplace netloc miso_0_1 1 0 3 NJ 160 NJ 160 NJ
-preplace netloc sys_clock_1 1 0 1 NJ 230
-levelinfo -pg 1 0 120 330 570 710
-pagesize -pg 1 -db -bbox -sgen -110 0 820 300
+preplace port port-id_clk -pg 1 -lvl 0 -x -10 -y 300 -defaultsOSRD
+preplace port port-id_hdmi_tx_clk_p -pg 1 -lvl 4 -x 980 -y 90 -defaultsOSRD
+preplace port port-id_hdmi_tx_clk_n -pg 1 -lvl 4 -x 980 -y 120 -defaultsOSRD
+preplace port port-id_ck_sck -pg 1 -lvl 4 -x 980 -y 270 -defaultsOSRD
+preplace port port-id_ck_ss -pg 1 -lvl 4 -x 980 -y 300 -defaultsOSRD
+preplace port port-id_ck_mosi -pg 1 -lvl 4 -x 980 -y 240 -defaultsOSRD
+preplace port port-id_ck_miso -pg 1 -lvl 0 -x -10 -y 140 -defaultsOSRD
+preplace portBus hdmi_tx_d_p -pg 1 -lvl 4 -x 980 -y 150 -defaultsOSRD
+preplace portBus hdmi_tx_d_n -pg 1 -lvl 4 -x 980 -y 180 -defaultsOSRD
+preplace portBus gpio -pg 1 -lvl 0 -x -10 -y 220 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 110 -y 300 -defaultsOSRD
+preplace inst rgb2dvi_0 -pg 1 -lvl 3 -x 780 -y 120 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 2 -x 390 -y 340 -defaultsOSRD
+preplace inst SOC_0 -pg 1 -lvl 2 -x 390 -y 180 -defaultsOSRD
+preplace netloc SOC_0_gpu_hsync 1 2 1 560 100n
+preplace netloc SOC_0_gpu_pixel_data 1 2 1 550 80n
+preplace netloc SOC_0_gpu_vde 1 2 1 580 140n
+preplace netloc SOC_0_gpu_vsync 1 2 1 570 120n
+preplace netloc SOC_0_spi_clk_o 1 2 2 590J 270 NJ
+preplace netloc SOC_0_spi_mosi 1 2 2 NJ 240 NJ
+preplace netloc SOC_0_spi_ss 1 2 2 560J 300 NJ
+preplace netloc ck_miso_1 1 0 2 NJ 140 NJ
+preplace netloc clk_1 1 0 1 NJ 300
+preplace netloc clk_wiz_0_clk_out1 1 1 1 220 180n
+preplace netloc clk_wiz_0_clk_out2 1 1 2 210 60 590
+preplace netloc clk_wiz_0_clk_out3 1 1 1 230 160n
+preplace netloc gpio_0_1 1 0 2 NJ 220 NJ
+preplace netloc rgb2dvi_0_TMDS_Clk_n 1 3 1 NJ 120
+preplace netloc rgb2dvi_0_TMDS_Clk_p 1 3 1 960J 90n
+preplace netloc rgb2dvi_0_TMDS_Data_n 1 3 1 960J 160n
+preplace netloc rgb2dvi_0_TMDS_Data_p 1 3 1 960J 140n
+preplace netloc xlconstant_0_dout 1 2 1 600J 160n
+levelinfo -pg 1 -10 110 390 780 980
+pagesize -pg 1 -db -bbox -sgen -140 0 1160 410
 "
 }
 {
    "da_board_cnt":"1",
+   "da_clkrst_cnt":"1",
    "da_ps7_cnt":"1"
 }

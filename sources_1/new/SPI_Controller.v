@@ -21,8 +21,14 @@
 
 
 module SPI_Controller(
-    input interrupt,
-    input [7:0] value,
+//    input interrupt,
+//    input [7:0] value,
+    inout [31:0] data_bus,
+    input [29:0] data_address,
+    input data_rw,
+    input data_cs,
+    
+    
     input clk,
     input spi_clk,
     output spi_clk_o,
@@ -30,6 +36,13 @@ module SPI_Controller(
     output reg mosi,
     input miso
     );
+
+wire interrupt;
+assign interrupt = data_address == 0 && data_cs == 1 && data_rw == 1 ? 1 : 0;
+wire [7:0] value;
+assign value = data_bus[15:8]; //Value at address 2
+
+assign data_bus = data_address == 0 && data_cs == 1 && data_rw == 0 ? 0 : 32'bz;
 
 parameter BUFFER_SIZE = 64;
 

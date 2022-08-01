@@ -28,6 +28,8 @@ module IF_ID_CU(
     input [31:0] branch_target,
     input clk,
     
+    input double_write_back_stall,
+    
     output [5:0] opcode,
     output [4:0] rs,
     output [4:0] rt,
@@ -45,7 +47,7 @@ reg [31:0] pc_reg;
 reg [31:0] ir_reg;
 initial begin 
     ir_reg = 0;
-    pc_reg = ('h80000000 - 4);
+    pc_reg = ('h80000000 );
     last_cycle_stall = 0;
 end
 
@@ -84,6 +86,7 @@ assign write_rt = (ir_reg[31:26] == 8 || ir_reg[31:26] == 9 || ir_reg[31:26] == 
 reg last_cycle_stall;           
 assign pc = pc_reg;
 always @ (posedge clk) begin
+if(double_write_back_stall == 0) begin
     if (last_cycle_stall == 0 || branch == 0) begin
         if (stall == 0) begin
             ir_reg <= instruction_bus;
@@ -99,5 +102,6 @@ always @ (posedge clk) begin
         pc_reg <= branch_target;
     end
     last_cycle_stall <= stall;
+end
 end
 endmodule

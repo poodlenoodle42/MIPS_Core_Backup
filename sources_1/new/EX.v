@@ -34,6 +34,10 @@ module EX(
     input [31:0] value_3,
     input clk,
     input stall,
+    
+    input double_write_back_stall,
+    
+    
     output reg [5:0] opcode_o,
     output reg [4:0] rd_o,
     output reg register_write_o,
@@ -144,6 +148,7 @@ initial begin
 end
 
 always @ (posedge clk) begin
+if(double_write_back_stall == 0) begin
     rd_o <= rd;
     register_write_o <= register_write;
     opcode_o <= opcode;
@@ -211,9 +216,12 @@ always @ (posedge clk) begin
     if (jump == 1) begin 
         result <= pc + 4;
     end 
+end
+
     if(mult_div_in_operation == 0 && last_mult_div_in_operation == 1) begin
         mul_result <= mult_div_out;
     end
+    
 end
 
 endmodule

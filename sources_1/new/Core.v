@@ -27,7 +27,6 @@ module Core(
     inout [31:0] data_bus,
     output data_rw,
     output data_cs,
-    output [1:0] data_mode,
     input clk
     );
 
@@ -88,6 +87,8 @@ wire fu_forwarding_rt;
 wire [31:0] fu_value_rs;
 wire [31:0] fu_value_rt;
 
+wire double_write_back_stall;
+
 IF_ID_CU cu (
     .instruction_bus (instruction_bus),
     .stall (stall_cu_rd),
@@ -105,7 +106,9 @@ IF_ID_CU cu (
     .funct (cu_funct),
     .immediate (cu_immediate),
     .target (cu_target),
-    .pc (cu_pc)
+    .pc (cu_pc),
+    
+    .double_write_back_stall (double_write_back_stall)
 );
 
 RD rd (
@@ -136,7 +139,9 @@ RD rd (
     .pc_o (rd_pc),
     .value_1 (rd_value_1),
     .value_2 (rd_value_2),
-    .value_3 (rd_value_3)
+    .value_3 (rd_value_3),
+    
+    .double_write_back_stall (double_write_back_stall)
 );
 
 EX ex (
@@ -159,7 +164,9 @@ EX ex (
     .branch_o (branch),
     .address (ex_address),
     .stall (stall_ex),
-    .stall_o (ex_mult_div_stall)
+    .stall_o (ex_mult_div_stall),
+    
+    .double_write_back_stall (double_write_back_stall)
 );
 
 MEM mem (
@@ -177,7 +184,7 @@ MEM mem (
     .data_address (data_address),
     .data_rw (data_rw),
     .data_cs (data_cs),
-    .data_mode (data_mode)
+    .double_write_back_stall (double_write_back_stall)
 );
 
 WB wb (
@@ -214,7 +221,8 @@ Stall_Unit su (
     .rf_stall_rt (rf_stall_rt),
     .stall_cu_rd (stall_cu_rd),
     .stall_ex (stall_ex),
-    .stall_rf (stall_rf)
+    .stall_rf (stall_rf),
+    .double_write_back_stall (double_write_back_stall)
 );
 
 Forwarding_Unit fu (

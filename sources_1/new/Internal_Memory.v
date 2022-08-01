@@ -19,6 +19,68 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+module Internal_Memory(
+    input clk,
+    
+    input [29:0] data_address,
+    inout [31:0] data_bus,
+    input data_cs,
+    input data_rw,
+    
+    input [29:0] instruction_address,
+    output [31:0] instruction_bus
+    
+);
+
+parameter SIZE = 4096;
+parameter ADDRESS = 32'h80000000;
+parameter INIT = 0;
+
+wire cs;
+assign cs = ({data_address,2'b0}  >= ADDRESS && {data_address,2'b0}  < (ADDRESS + (SIZE * 4) - 1)) && data_cs == 1 ? 1 : 0;
+
+wire cs_i;
+assign cs_i = ({instruction_address,2'b0} >= ADDRESS && {instruction_address,2'b0} < (ADDRESS + (SIZE * 4) - 1))  ? 1 : 0;
+
+assign data_bus = cs == 1 && data_rw == 0 ? mbr : 32'bz;
+assign instruction_bus = cs_i == 1 ? mbr_i : 32'bz;
+
+reg [31:0] mbr;
+reg [31:0] mbr_i;
+reg [31:0] memory [0:SIZE];
+
+wire [31:0] instruction_address_internal;
+assign instruction_address_internal = ({instruction_address,2'b0} - ADDRESS) >> 2;
+
+wire [31:0] data_address_internal;
+assign data_address_internal = ({data_address,2'b0} - ADDRESS) >> 2;
+
+integer i;
+initial begin
+    mbr = 0;
+    if(INIT == 1) begin
+        $readmemh("Pong.elf.mem", memory);
+    end
+    mbr_i = 'h27bdffe0;
+end
+
+
+always @(negedge clk) begin
+    if(cs_i) begin
+        mbr_i <= memory[instruction_address_internal];
+    end
+    if(cs == 1) begin
+        if(data_rw == 0) begin
+            mbr <= memory[data_address_internal];
+        end else begin
+            memory[data_address_internal] <= data_bus;
+        end
+    end
+end
+
+
+
+/*
 
 module Internal_Memory(
     input [31:0] data_address,
@@ -97,7 +159,7 @@ always @ (negedge clk) begin
 
 end
 
-
+*/
 /*
 always @ (negedge clk) begin
     if (cs == 1) begin

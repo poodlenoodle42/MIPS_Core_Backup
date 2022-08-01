@@ -26,6 +26,9 @@ module Stall_Unit(
     input forwarding_rt,
     input rf_stall_rs,
     input rf_stall_rt,
+    
+    input double_write_back_stall,
+    
     output stall_cu_rd,
     output stall_ex,
     output stall_rf
@@ -36,6 +39,6 @@ assign register_stall = (rf_stall_rs == 1 && forwarding_rs == 0) || (rf_stall_rt
 
 assign stall_cu_rd = mult_div_stall || register_stall;
 assign stall_ex = mult_div_stall;
-assign stall_rf = mult_div_stall;
+assign stall_rf = mult_div_stall || double_write_back_stall;
 
 endmodule
